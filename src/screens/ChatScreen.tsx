@@ -1,50 +1,74 @@
-import React from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import Header from '../components/Chat/Header';
-// import ChatBubble from "../components/Chat/ChatBubble";
+import React, {useEffect, useRef, useState} from 'react';
+import {FlatList, StyleSheet, View} from 'react-native';
 import ChatBubble from '../components/Chat/ChatBubble';
-import { MessageProps } from '../types/chat.type';
+import Header from '../components/Chat/Header';
+import MessageBox from '../components/Chat/MessageBox';
+import {MessageProps} from '../types/chat.type';
+import dayjs from 'dayjs';
+
+const messages: MessageProps[] = [
+  {
+    id: 1,
+    name: 'Penn N. (panther)',
+    message: 'Hey guys, thanks a lot for the impressive game, it was fun!',
+    time: '20:00',
+    type: 'sender',
+  },
+  {
+    id: 2,
+    message:
+      "Certainly, it was fantastic to see how long each point lasted. It's always fun to play with players",
+    time: '20:00',
+    type: 'sender',
+  },
+  {
+    id: 3,
+    name: 'Penn N. (panther)',
+    message: 'The dedication of the ball was stunning.',
+    time: '20:00',
+    type: 'sender',
+  },
+  {
+    id: 4,
+    name: 'Penn N. (panther)',
+    message: 'The dedication of the ball was stunning.',
+    time: '20:00',
+    type: 'sender',
+  },
+  {
+    id: 5,
+    name: 'Penn N. (panther)',
+    message: "I'm crossing my fingers that the next game will be crazy!",
+    time: '20:00',
+    type: 'me',
+  },
+];
 
 const ChatScreen = () => {
-  const messages: MessageProps[] = [
-    {
-      id: 1,
-      avatar: 'https://via.placeholder.com/40', // Replace with the correct avatar URL
-      name: 'Penn N. (panther)',
-      message: 'Hey guys, thanks a lot for the impressive game, it was fun!',
-      time: '20:00',
-    },
-    {
-      id: 2,
-      avatar: 'https://via.placeholder.com/40', // Replace with the correct avatar URL
-      name: 'You',
-      message:
-        "Certainly, it was fantastic to see how long each point lasted. It's always fun to play with players",
-      time: '20:00',
-    },
-    {
-      id: 3,
-      avatar: 'https://via.placeholder.com/40', // Replace with the correct avatar URL
-      name: 'Penn N. (panther)',
-      message: 'The dedication of the ball was stunning.',
-      time: '20:00',
-    },
-    {
-      id: 4,
-      avatar: 'https://via.placeholder.com/40', // Replace with the correct avatar URL
-      name: 'Penn N. (panther)',
-      message: "I'm crossing my fingers that the next game will be crazy!",
-      time: '20:00',
-      isHighlighted: true,
-    },
-  ];
+  const flatListRef = useRef<FlatList<MessageProps>>(null);
+  const [allMessages, setAllMessages] = useState<MessageProps[]>(messages);
+
+  const updateMessageList = (newMessage: string) => {
+    setAllMessages(prev => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        name: 'Penn N. (panther)',
+        message: newMessage,
+        time: dayjs().format('HH:mm'),
+        type: 'me',
+      },
+    ]);
+  };
+
+  // Scroll to bottom function
+  const scrollToBottom = () => {
+    flatListRef.current?.scrollToEnd({animated: true});
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [allMessages]);
 
   return (
     <View style={styles.container}>
@@ -53,25 +77,21 @@ const ChatScreen = () => {
 
       {/* Messages */}
       <FlatList
-        data={messages}
+        ref={flatListRef}
+        data={allMessages}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
           <ChatBubble
-            avatar={item.avatar}
-            name={item.name}
+            name={item.name || ''}
             message={item.message}
+            type={item.type}
             time={item.time}
+            withAvatar={item.id !== 1}
           />
         )}
+        style={styles.flatListContainer}
       />
-
-      {/* Input Section */}
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Add a comment..." />
-        <TouchableOpacity style={styles.sendButton}>
-          <Icon name="send" size={20} color="#fff" />
-        </TouchableOpacity>
-      </View>
+      <MessageBox updateMessageList={updateMessageList} />
     </View>
   );
 };
@@ -80,6 +100,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FCFAF7',
+  },
+  flatListContainer: {
+    flex: 1,
+    paddingTop: 10,
   },
   header: {
     padding: 10,

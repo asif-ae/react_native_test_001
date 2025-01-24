@@ -28,9 +28,9 @@ const NewsCardWithBackground = () => {
         />
 
         {/* Logo */}
-        <View style={styles.logoContainer}>
+        <Text style={styles.logoContainer}>
           <Logo width={50} height={20} /> {/* Adjust size as needed */}
-        </View>
+        </Text>
 
         {/* Text Content */}
         <Text style={styles.title}>

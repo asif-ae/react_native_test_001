@@ -1,8 +1,7 @@
 export type MessageProps = {
   id: number;
-  avatar: string;
-  name: string;
+  name?: string;
   message: string;
   time: string;
-  isHighlighted?: boolean;
+  type: 'me' | 'sender';
 };

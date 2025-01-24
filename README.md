@@ -1,82 +1,104 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native App
 
-# Getting Started
+This is a static **React Native** project developed based on the provided Figma design. It includes the following main sections:
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+- **Header Component**: Shared between Game and News pages.
+- **Footer Navigation**: Allows navigation across pages.
+- **Game Page**: Displays static game cards and player information.
+- **Chat Page**: A static chat interface linked to a game card.
+- **News Page**: Displays static news items and system messages.
 
-## Step 1: Start the Metro Server
+The project was bootstrapped using [@react-native-community/cli](https://github.com/react-native-community/cli).
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+---
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 📥 Getting Started
+
+> **Note**: Ensure you have completed the [React Native Environment Setup](https://reactnative.dev/docs/environment-setup) before proceeding.
+
+### Step 1: Start the Metro Server
+
+To start the Metro Bundler, run the following command from the project root:
 
 ```bash
 # using npm
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Start your Application
+### Step 2: Start Your Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+With Metro running in a separate terminal, open a new terminal and run the following command:
 
-### For Android
-
+#### For Android:
 ```bash
-# using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+If everything is set up correctly, the app should start on your Android Emulator.
 
-```bash
-# using npm
-npm run ios
+---
 
-# OR using Yarn
-yarn ios
-```
+## 🚀 Building the APK
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+To build the release APK for Android, follow these steps:
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+1. **Run the Build Script**: A custom script is provided in `package.json` for building the APK. Run the following command:
 
-## Step 3: Modifying your App
+   ```bash
+   npm run build
+   ```
 
-Now that you have successfully run the app, let's modify it.
+   This script navigates to the `android` directory, runs the Gradle `assembleRelease` task, and then navigates back to the root directory.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+2. **Locate the APK**: After the build is complete, the APK file will be generated at:
+   ```
+   android/app/build/outputs/apk/release/app-universal-release.apk
+   ```
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+3. **Install the APK**:
+   - Transfer the APK to your Android device.
+   - Install the APK file by opening it on your device.
 
-## Congratulations! :tada:
+4. **Test the App**:
+   - Launch the installed app and verify all the features.
 
-You've successfully run and modified your React Native App. :partying_face:
+---
 
-### Now what?
+## 🛠 Features
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### 1. Header Component
+- Shared across Game and News pages.
+- Excluded from the Chat page.
 
-# Troubleshooting
+### 2. Footer Navigation
+- Provides navigation between Game, News, Chat, and Rank pages.
+- Active state styling is applied to the selected page.
+- Excluded from the Chat page.
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### 3. Game Page
+- Displays static game cards with:
+  - Date, time, and weather.
+  - Player details and roles.
+  - "Chat" button to navigate to the Chat page.
 
-# Learn More
+### 4. Chat Page
+- Static chat interface.
+- Users can type and add messages to the chat history.
+- Displays timestamps for messages.
 
-To learn more about React Native, take a look at the following resources:
+### 5. News Page
+- Static news items with:
+  - Images, titles, and comment counts.
+- Static system messages.
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
 
-android/app/build/outputs/apk/release/app-universal-release.apk
+## Troubleshooting
 
+If you encounter issues running the app, refer to the [React Native Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting).
+
+---
+
+### 🎉 Congratulations!
+
+You have now set up and run a fully static React Native application!

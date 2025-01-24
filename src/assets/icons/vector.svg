@@ -1,0 +1,10 @@
+/* Vector */
+
+position: absolute;
+left: 81.36%;
+right: 15.27%;
+top: 76.73%;
+bottom: 20.86%;
+
+background: #CFD8DC;
+transform: matrix(-0.89, 0.46, 0.38, 0.93, 0, 0);

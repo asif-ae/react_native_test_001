@@ -1,45 +1,65 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import Divider from '../components/Divider';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import Filter from '../components/Game/Filter';
 import MatchCard from '../components/Game/MatchCard';
 import Header from '../components/Header';
-import MatchDetailsCard from '../components/News/MatchDetailsCard';
-import NewsCard from '../components/News/NewsCard';
-import NewsCardWithBackground from '../components/News/NewsCardWithBackground';
-import SystemMessageCard from '../components/News/SystemMessageCard';
 
 const RegisterPage: React.FC= () => {
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Header />
+      <Filter />
+      <ScrollView style={styles.scrollViewContainer}>
+        <View style={styles.buttonView}>
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Doubles games</Text>
+          </TouchableOpacity>
+        </View>
 
-      <SystemMessageCard />
-
-      <Divider />
-
-      <NewsCardWithBackground />
-
-      {/* <MatchCard /> */}
-
-      <MatchDetailsCard />
-
-      <NewsCard />
-
-      <View style={{paddingVertical: 20}}>
-        <Divider />
-      </View>
-
-      <NewsCard />
-
-      <View style={{paddingVertical: 20}} />
-    </ScrollView>
+        <MatchCard />
+        <MatchCard />
+        <MatchCard />
+        <MatchCard />
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
-  title: {fontSize: 24, marginBottom: 20},
-  card: {padding: 20, borderWidth: 1, borderRadius: 10, width: '80%'},
+  container: {
+    flex: 1,
+  },
+  scrollViewContainer: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+  },
+  buttonView: {
+    paddingHorizontal: 15,
+    paddingTop: 10,
+  },
+  button: {
+    width: 125,
+    height: 34,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#145E94',
+    borderRadius: 26,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontFamily: 'Rubik',
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#145E94',
+    textAlign: 'center',
+  },
 });
 
 export default RegisterPage;

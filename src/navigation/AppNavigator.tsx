@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import GamePage from '../screens/GamePage';
 import NewsScreen from '../screens/NewsScreen';
 import RegisterPage from '../screens/RegisterPage';
-import ChatPage from '../screens/ChatScreen'; // Import the Chat screen
+import ChatScreen from '../screens/ChatScreen'; // Import the Chat screen
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -80,7 +80,7 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="Tabs" component={TabNavigator} />
 
         {/* Additional route outside the tab bar */}
-        <Stack.Screen name="Chat" component={ChatPage} />
+        <Stack.Screen name="Chat" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
